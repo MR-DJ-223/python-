@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Aşk Ölçer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .center-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="center-screen">
+        <h3 @click="changeText('heading')">{{ currentHeaderText }}</h3>
+        <button type="button" class="btn btn-success mr-2" :style="{ fontSize: yesButtonSize + 'rem' }" :key="yesButtonSize" @click="yesButton()">Yes</button>
+        <button type="button" class="btn btn-danger" @click="changeText('noButton')">No</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                headerText: ['Are you loving me?',
+                             'I am asking you again?',
+                             'you have to love me',
+                             'i dont want leave you',
+                             'i am your life'],
+                currentHeaderTextIndex: 0,
+                yesButtonSize: 1,
+            },
+            methods: {
+                changeText(button) {
+                    if (button === 'noButton') {
+                        this.currentHeaderTextIndex = (this.currentHeaderTextIndex + 1) % this.headerText.length;
+                        this.yesButtonSize += 5;
+                    }
+                },
+                yesButton() {
+    // Displaying the image using a modal or custom overlay
+    document.body.innerHTML += `
+        <div id="imageOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+            <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/valentine-day-background-with-hearts-design-template-ec42213f0b2e383fb8f0e32f5560c516_screen.jpg?ts=1644847897" alt="Love Image" style="max-width: 90%; max-height: 90%;"/>
+        </div>`;
+
+    // Removing the image overlay after a delay (e.g., 3 seconds)
+    setTimeout(() => {
+        const imageOverlay = document.getElementById('imageOverlay');
+        if (imageOverlay) {
+            imageOverlay.remove();
+        }
+    }, 30000);
+}
+            },
+            computed: {
+                currentHeaderText() {
+                    return this.headerText[this.currentHeaderTextIndex];
+                }
+            }
+        });
+    </script>
+</body>
+</html>

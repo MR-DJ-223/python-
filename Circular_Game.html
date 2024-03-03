@@ -29,7 +29,8 @@
 </head>
 <body>
 
-    <h1>Welcome to Circular Game Wishes</h1>
+    <h1>Welcome to Circular Game </h1>
+    <h6>nannaku prematho movie, circular game full logic game</h6>
 
     <label for="name">Enter your name:</label>
     <input type="text" id="name" placeholder="Your Name">
@@ -41,7 +42,7 @@
 
     <br>
 
-    <button onclick="generateWishes()">Generate Wishes</button>
+    <button onclick="generateWishes()">find person</button>
 
     <div id="output"></div>
 
@@ -60,7 +61,7 @@
             outputDiv.innerHTML = "";
 
             // Display wishes with user's name
-            var wishes = "Hello, " + name + "! Here is your circular game output:<br>";
+            var wishes = "Hello, " + name + "! after eliminating alternate persons in a circular:<br>";
 
             // Simulate circular game using the provided Python code
             var result = simulateCircularGame(parseInt(number));
@@ -81,7 +82,7 @@
             }
 
             // Add the last remaining number to the result
-            result += "<br>Last remaining number: " + numbers[0];
+            result += "<br>Last remaining member : " + numbers[0];
             return result;
         }
     </script>

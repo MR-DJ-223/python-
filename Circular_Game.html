@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Game Wishes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Circular Game Wishes</h1>
+
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name" placeholder="Your Name">
+
+    <br>
+
+    <label for="number">Enter a positive integer:</label>
+    <input type="number" id="number" placeholder="Positive Integer">
+
+    <br>
+
+    <button onclick="generateWishes()">Generate Wishes</button>
+
+    <div id="output"></div>
+
+    <script>
+        function generateWishes() {
+            var name = document.getElementById('name').value;
+            var number = document.getElementById('number').value;
+
+            // Validate input
+            if (!name || !number || isNaN(number) || number <= 0) {
+                alert("Please enter a valid name and a positive integer.");
+                return;
+            }
+
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "";
+
+            // Display wishes with user's name
+            var wishes = "Hello, " + name + "! Here is your circular game output:<br>";
+
+            // Simulate circular game using the provided Python code
+            var result = simulateCircularGame(parseInt(number));
+
+            // Display the result
+            outputDiv.innerHTML = wishes + result;
+        }
+
+        function simulateCircularGame(n) {
+            var numbers = Array.from({ length: n }, (_, i) => i + 1);
+            var index = 0;
+
+            var result = "";
+            while (numbers.length > 1) {
+                result += numbers[index] + " ";
+                numbers.splice((index + 1) % numbers.length, 1);
+                index = (index + 1) % numbers.length;
+            }
+
+            // Add the last remaining number to the result
+            result += "<br>Last remaining number: " + numbers[0];
+            return result;
+        }
+    </script>
+
+</body>
+</html>
